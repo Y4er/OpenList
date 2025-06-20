@@ -145,6 +145,7 @@ BuildDockerMultiplatform() {
     export CC=${cgo_cc}
     echo "building for $os_arch"
     go build -o build/$os/$arch/"$appName" -ldflags="$docker_lflags" -tags=jsoniter .
+    upx -9 build/$os/$arch/"$appName"
   done
 
   DOCKER_ARM_ARCHES=(linux-arm/v6 linux-arm/v7)
@@ -159,6 +160,7 @@ BuildDockerMultiplatform() {
     export CC=${cgo_cc}
     echo "building for $docker_arch"
     go build -o build/${docker_arch%%-*}/${docker_arch##*-}/"$appName" -ldflags="$docker_lflags" -tags=jsoniter .
+    upx -9 build/${docker_arch%%-*}/${docker_arch##*-}/"$appName"
   done
 }
 

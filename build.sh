@@ -108,6 +108,7 @@ BuildDev() {
 
 BuildDocker() {
   go build -o ./bin/"$appName" -ldflags="$ldflags" -tags=jsoniter .
+  upx -9 ./bin/"$appName"
 }
 
 PrepareBuildDockerMusl() {
